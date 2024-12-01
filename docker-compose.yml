@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  mongo:
+    image: mongo:latest
+    container_name: tmdb_mongo
+    ports:
+      - '27017:27017'
+    volumes:
+      - mongo_data:/data/db
+    networks:
+      - tmdb_network
+
+  mongo-test:
+    image: mongo:latest
+    container_name: tmdb_mongo_test
+    ports:
+      - '27018:27017'
+    volumes:
+      - mongo_test_data:/data/db
+    networks:
+      - tmdb_network
+
+volumes:
+  mongo_data:
+  mongo_test_data:
+
+networks:
+  tmdb_network:
